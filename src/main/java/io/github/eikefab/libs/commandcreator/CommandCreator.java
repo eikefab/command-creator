@@ -69,7 +69,8 @@ public final class CommandCreator {
                     .aliases(command.aliases())
                     .usage(command.usage())
                     .permission(command.permission())
-                    .permissionMessage(command.permissionMessage());
+                    .permissionMessage(command.permissionMessage())
+                    .instance(instance);
         }
 
         frameBuilder.subCommands(new LinkedHashMap<>());

@@ -19,7 +19,7 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
-    implementation 'com.github.eikefab:CommandCreator:a36c75c2'
+    implementation 'com.github.eikefab:CommandCreator:aa648fbc'
 
     def lombok = "org.projectlombok:lombok:1.18.16"
 

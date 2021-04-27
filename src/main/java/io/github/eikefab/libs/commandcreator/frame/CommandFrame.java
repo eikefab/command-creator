@@ -13,6 +13,7 @@ import java.util.LinkedHashMap;
 public class CommandFrame {
 
     private final Method executor;
+    private final Object instance;
     private final String name;
     private final String permission;
     private final String permissionMessage;

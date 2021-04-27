@@ -74,7 +74,7 @@ public class CommandFrameExecutor {
         }
 
         try {
-            commandFrame.getExecutor().invoke(commandFrame, sender, values.toArray());
+            commandFrame.getExecutor().invoke(commandFrame.getInstance(), sender, values.toArray(new Object[] {}));
         } catch (Exception e) {
             e.printStackTrace();
         }
