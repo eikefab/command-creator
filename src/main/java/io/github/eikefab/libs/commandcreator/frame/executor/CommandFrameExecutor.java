@@ -43,6 +43,8 @@ public class CommandFrameExecutor {
             return;
         }
 
+        if (parameters != null)
+        if (subCommands != null)
         if ((parameters.length > args.length) || (subCommands.size() > args.length)) {
             sender.sendMessage(commandFrame.getUsage());
 
