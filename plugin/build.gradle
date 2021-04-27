@@ -1,19 +1,34 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
-group 'io.github.eikefab.libs.commandcreator'
+group 'io.github.eikefab.minecraft'
 version '1.0.0'
+
+tasks.build.dependsOn('shadowJar')
 
 repositories {
     mavenCentral()
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+
+    implementation 'com.github.eikefab:CommandCreator:06fb6307'
+
+    def lombok = "org.projectlombok:lombok:1.18.16"
+
+    compileOnly lombok
+    annotationProcessor lombok
 }
 
-test {
-    useJUnitPlatform()
+shadowJar {
+    archiveName("${project.name}-${project.version}.jar")
+
+    relocate 'io.github.eikefab.libs.commandcreator', 'io.github.eikefab.minecraft.samplecommandcreator.libs'
 }

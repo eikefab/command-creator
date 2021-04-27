@@ -1,0 +1,6 @@
+name: SampleCommandCreator
+version: 1.0.0
+main: io.github.eikefab.minecraft.samplecommandcreator.SampleCommandCreator
+author: eikefab
+commands:
+  ping:

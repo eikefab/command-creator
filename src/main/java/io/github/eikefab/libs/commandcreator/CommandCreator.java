@@ -60,6 +60,8 @@ public final class CommandCreator {
 
             if (parameters.length >= 2) {
                 frameBuilder.parameters(Arrays.copyOfRange(parameters, 1, parameters.length));
+            } else {
+                frameBuilder.parameters(new Parameter[] {});
             }
 
             frameBuilder.target(command.target())
