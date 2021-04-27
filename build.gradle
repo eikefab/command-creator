@@ -5,19 +5,7 @@ plugins {
 group 'io.github.eikefab.libs'
 version '1.0.0'
 
-repositories {
-    mavenCentral()
+repositories {}
 
-    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
-}
-
-dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-
-    def lombok = "org.projectlombok:lombok:1.18.16"
-
-    compileOnly lombok
-    annotationProcessor lombok
-}
+dependencies {}
 
