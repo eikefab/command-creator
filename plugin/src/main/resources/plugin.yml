@@ -4,3 +4,5 @@ main: io.github.eikefab.minecraft.samplecommandcreator.SampleCommandCreator
 author: eikefab
 commands:
   ping:
+  hello:
+  libver:

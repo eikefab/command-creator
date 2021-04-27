@@ -8,6 +8,7 @@ import lombok.Data;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -43,7 +44,6 @@ public class CommandFrameExecutor {
             return;
         }
 
-        if (parameters != null)
         if (subCommands != null)
         if ((parameters.length > args.length) || (subCommands.size() > args.length)) {
             sender.sendMessage(commandFrame.getUsage());
@@ -67,14 +67,27 @@ public class CommandFrameExecutor {
 
         for (int position = 0; position < parameters.length; position++) {
             final Parameter parameter = parameters[position];
-            final CommandAdapter<?> adapter = CommandAdapters.of(parameter.getType());
-            final Object value = adapter.adapt(args[position]);
 
-            values.add(value);
+            if (parameter.getType() != String.class) {
+
+                final CommandAdapter<?> adapter = CommandAdapters.of(parameter.getType());
+                final Object value = adapter.adapt(args[position]);
+
+                values.add(value);
+            }
         }
 
         try {
-            commandFrame.getExecutor().invoke(commandFrame.getInstance(), sender, values.toArray(new Object[] {}));
+            final Method executor = commandFrame.getExecutor();
+            final Object instance = commandFrame.getInstance();
+
+            // TODO: fix illegal argument exception
+
+            if (!values.isEmpty()) {
+                executor.invoke(instance, sender, values.toArray());
+            } else {
+                executor.invoke(instance, sender);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

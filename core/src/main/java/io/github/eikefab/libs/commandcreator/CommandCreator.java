@@ -30,12 +30,13 @@ public final class CommandCreator {
 
     public void register(Object instance) throws IllegalAccessException {
         final Class<?> clazz = instance.getClass();
-        final CommandFrameBuilder frameBuilder = CommandFrame.builder();
 
         for (Method method : clazz.getMethods()) {
             if (!method.isAnnotationPresent(Command.class)) continue;
+            if (!method.isAccessible()) method.setAccessible(true);
 
             final Command command = method.getAnnotation(Command.class);
+            final CommandFrameBuilder frameBuilder = CommandFrame.builder();
 
             final String[] keys = command.name().split(" ");
             final Parameter[] parameters = method.getParameters();
@@ -70,12 +71,12 @@ public final class CommandCreator {
                     .usage(command.usage())
                     .permission(command.permission())
                     .permissionMessage(command.permissionMessage())
-                    .instance(instance);
+                    .instance(instance)
+                    .executor(method)
+                    .subCommands(new LinkedHashMap<>());
+
+            register(frameBuilder.build());
         }
-
-        frameBuilder.subCommands(new LinkedHashMap<>());
-
-        register(frameBuilder.build());
     }
 
     public void register(CommandFrame commandFrame) {

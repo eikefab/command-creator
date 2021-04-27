@@ -28,7 +28,7 @@ public final class CommandAdapters {
     }
 
     public static CommandAdapter<?> of(Class<?> type) {
-        return adapters.getOrDefault(type, (CommandAdapter<Object>) value -> value);
+        return adapters.getOrDefault(type, (CommandAdapter<String>) value -> value);
     }
 
 }

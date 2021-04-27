@@ -15,8 +15,18 @@ public final class SampleCommandCreator extends JavaPlugin {
     }
 
     @Command(name = "ping")
-    public void handle(CommandSender sender) {
+    public void ping(CommandSender sender) {
         sender.sendMessage("§aPong!");
+    }
+
+    @Command(name = "hello", usage = "§cHey! Correct usage: /hello <name>!")
+    public void hello(CommandSender sender, String name) {
+        sender.sendMessage("§bHello, " + name + "!");
+    }
+
+    @Command(name = "libver")
+    public void libver(CommandSender sender) {
+        sender.sendMessage("We are on 1.0.0! ;)");
     }
 
 }
