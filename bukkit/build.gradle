@@ -12,5 +12,9 @@ repositories {
     maven { url = 'https://oss.sonatype.org/content/groups/public/' }
 }
 
-dependencies {}
+dependencies {
+    def spigotVersion = "1.8.8-R0.1-SNAPSHOT"
 
+    implementation project(":core")
+    compileOnly "org.spigotmc:spigot-api:$spigotVersion"
+}

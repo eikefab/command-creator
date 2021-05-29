@@ -1,4 +1,5 @@
 rootProject.name = 'CommandCreator'
-include 'plugin'
+
 include 'core'
+include 'bukkit'
 
